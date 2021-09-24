@@ -1,0 +1,48 @@
+﻿@model burgerSystem.Models.burger_type
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "burger_type", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Burger Menu types</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Menu Name</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" name="typeName" id="typeName" placeholder="Name" />
+                @Html.ValidationMessageFor(model => model.typeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Upload icon</label>
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" id="ImageFile" class="form-control" />
+                @Html.ValidationMessageFor(model => model.typeImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

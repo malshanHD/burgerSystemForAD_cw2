@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="E_burgerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="burger_type">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="typeImage" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_burger">
+          <Key>
+            <PropertyRef Name="BurgerID" />
+          </Key>
+          <Property Name="BurgerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BurgerName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="typeID" Type="int" />
+          <Property Name="UnitPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="BurgerWeight" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tbl_burge__typeI__267ABA7A">
+          <End Role="burger_type" Type="Self.burger_type" Multiplicity="0..1" />
+          <End Role="tbl_burger" Type="Self.tbl_burger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="burger_type">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="tbl_burger">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="E_burgerDBModelStoreContainer">
+          <EntitySet Name="burger_type" EntityType="Self.burger_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_burger" EntityType="Self.tbl_burger" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_burge__typeI__267ABA7A" Association="Self.FK__tbl_burge__typeI__267ABA7A">
+            <End Role="burger_type" EntitySet="burger_type" />
+            <End Role="tbl_burger" EntitySet="tbl_burger" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="E_burgerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="burger_type">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="typeImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_burger" Relationship="Self.FK__tbl_burge__typeI__267ABA7A" FromRole="burger_type" ToRole="tbl_burger" />
+        </EntityType>
+        <EntityType Name="tbl_burger">
+          <Key>
+            <PropertyRef Name="BurgerID" />
+          </Key>
+          <Property Name="BurgerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BurgerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="typeID" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="BurgerWeight" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="burger_type" Relationship="Self.FK__tbl_burge__typeI__267ABA7A" FromRole="tbl_burger" ToRole="burger_type" />
+        </EntityType>
+        <Association Name="FK__tbl_burge__typeI__267ABA7A">
+          <End Role="burger_type" Type="Self.burger_type" Multiplicity="0..1" />
+          <End Role="tbl_burger" Type="Self.tbl_burger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="burger_type">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="tbl_burger">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="E_burgerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="burger_type" EntityType="Self.burger_type" />
+          <EntitySet Name="tbl_burger" EntityType="Self.tbl_burger" />
+          <AssociationSet Name="FK__tbl_burge__typeI__267ABA7A" Association="Self.FK__tbl_burge__typeI__267ABA7A">
+            <End Role="burger_type" EntitySet="burger_type" />
+            <End Role="tbl_burger" EntitySet="tbl_burger" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="E_burgerDBModelStoreContainer" CdmEntityContainer="E_burgerDBEntities">
+          <EntitySetMapping Name="burger_type">
+            <EntityTypeMapping TypeName="E_burgerDBModel.burger_type">
+              <MappingFragment StoreEntitySet="burger_type">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="typeName" ColumnName="typeName" />
+                <ScalarProperty Name="typeImage" ColumnName="typeImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_burger">
+            <EntityTypeMapping TypeName="E_burgerDBModel.tbl_burger">
+              <MappingFragment StoreEntitySet="tbl_burger">
+                <ScalarProperty Name="BurgerID" ColumnName="BurgerID" />
+                <ScalarProperty Name="BurgerName" ColumnName="BurgerName" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="BurgerWeight" ColumnName="BurgerWeight" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
