@@ -29,7 +29,7 @@
 </div>
 <div class="container-fluid" style="background-color:white;">
     <div class="row justify-content-center">
-        <input type="button" class="btn btn-warning font-weight-bold" data-toggle="modal" data-target="#ourmenu" value="Menu" />
+        <input type="button" class="btn btn-warning font-weight-bold btn-lg" data-toggle="modal" data-target="#ourmenu" value="Menu" />
 
     </div>
     <div class="row justify-content-center mt-2 mb-3">
@@ -52,9 +52,9 @@
             <div class="col-md-5 mt-2 text-center">
                 @foreach (var item in Model.menu)
                 {
-                <h3 class="font-weight-bolder"><span class="text-danger font-weight-bolder">Our</span> @Html.DisplayFor(modelItem => item.typeName) <i class="fas fa-hotdog"></i></h3> <hr />
+                    <h3 class="font-weight-bolder"><span class="text-danger font-weight-bolder">Our</span> @Html.DisplayFor(modelItem => item.typeName) <i class="fas fa-hotdog"></i></h3> <hr />
                 }
-                </div>
+            </div>
         </div>
         <div class="row" style="height:100%;">
             @foreach (var item in Model.burgers)
@@ -75,6 +75,38 @@
                     </a>
                 </div>
             }
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ourmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content bg-dark  align-content-center">
+            <div class="modal-header">
+                <h5 class="modal-title font-italic text-center text-light" id="exampleModalLongTitle">Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <div class="row">
+                        @foreach (var item in Model.burgerTypes)
+                        {
+                            <div class="col-3">
+                                <a href="/Home/Menuview/@Html.DisplayFor(modelItem => item.typeID)" class="text-decoration-none">
+                                    <img class="card-img-top" src="@Url.Content(item.typeImage)" style="width: 100%;" />
+                                    <p class="text-center font-weight-bolder mt-1 text-uppercase text-light " style="font-size:80%;"> @Html.DisplayFor(modelItem => item.typeName)</p>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
